@@ -29,7 +29,7 @@
 | prefecture_id      | integer    | null: false                    |
 | delivery_day_id    | integer    | null: false                    |
 | price              | integer    | null: false                    |
-| users              | references | null: false, foreign_key: true |
+| user               | references | null: false, foreign_key: true |
 
 ### Association
 - belongs_to :user
@@ -54,7 +54,7 @@
 | Column             | Type       | Options                        |
 | ------------------ | ---------- | ------------------------------ |
 | postal_code        | string     | null: false                    |
-| prefecture         | integer    | null: false                    |
+| prefecture_id      | integer    | null: false                    |
 | city               | string     | null: false                    |
 | block              | string     | null: false                    |
 | building           | string     |                                |
