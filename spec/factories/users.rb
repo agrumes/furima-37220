@@ -8,7 +8,7 @@ FactoryBot.define do
     first_name            {Gimei.first}
     last_name             {Gimei.last}
     first_name_kana       {Gimei.first.katakana}
-    last_name             {Gimei.last.katakana}
+    last_name_kana        {Gimei.last.katakana}
     birthday              {Faker::Date.birthday(min_age: 18, max_age: 65)}
   end
 end
