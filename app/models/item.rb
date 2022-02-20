@@ -9,4 +9,13 @@ class Item < ApplicationRecord
   belongs_to :user
   has_one :purchase
 
+  validates :item_name, presence: true, length: {maximum: 40 }
+  validates :tem_explanation, presence: true, length: {maximum: 1000 }
+  validates :category_id, numericality: { other_than: 1 ,message: "can't be blank"}
+  validates :condition_id, numericality: { other_than: 1 ,message: "can't be blank"}
+  validates :delivery_charge_id, numericality: { other_than: 1 ,message: "can't be blank"}
+  validates :prefecture_id, numericality: { other_than: 1 ,message: "can't be blank"}
+  validates :delivery_day_id, numericality: { other_than: 1 ,message: "can't be blank"}
+  validates :price, numericality: { in: 300..9999999 ,message: "Price is out of setting range"}
+
 end
