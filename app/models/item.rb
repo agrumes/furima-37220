@@ -8,7 +8,9 @@ class Item < ApplicationRecord
 
   belongs_to :user
   has_one :purchase
+  has_one_attached :item_image
 
+  validates :item_image, presence: true
   validates :item_name, presence: true, length: {maximum: 40 }
   validates :tem_explanation, presence: true, length: {maximum: 1000 }
   validates :category_id, numericality: { other_than: 1 ,message: "can't be blank"}
