@@ -1,6 +1,6 @@
 class ItemsController < ApplicationController
-  before_action :move_to_login, only: [:new, :create]
-  before_action :set_item, only: [:show]
+  before_action :move_to_login, only: [:new, :create, :edit, :update]
+  before_action :set_item, only: [:show, :edit]
 
   def index
     @items = Item.all.order(id: "DESC")
@@ -21,6 +21,23 @@ class ItemsController < ApplicationController
 
   def show
   end
+
+  def edit
+    unless Item.find(params[:id]).user.id.to_i ==  current_user.id
+      redirect_to action: :index
+    end
+  end
+
+  def update
+    item = Item.find(params[:id])
+    item.update(item_params)
+    if item.save
+      redirect_to action: :show
+    else
+      render :edit
+    end
+  end
+
 
   private
 
