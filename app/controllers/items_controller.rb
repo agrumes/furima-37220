@@ -29,9 +29,8 @@ class ItemsController < ApplicationController
   end
 
   def update
-    item = Item.find(params[:id])
-    item.update(item_params)
-    if item.save
+    @item = Item.find(params[:id])
+    if @item.update(item_params)
       redirect_to action: :show
     else
       render :edit
