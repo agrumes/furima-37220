@@ -1,5 +1,5 @@
 const pay = () => {
-  Payjp.setPublicKey("pk_test_128bc67ba00235aa655c79b9"); // PAY.JPテスト公開鍵
+  Payjp.setPublicKey(process.env.PAYJP_PUBLIC_KEY);  // PAY.JPテスト公開鍵
   const submit = document.getElementById("button");
   submit.addEventListener("click", (e) => {
     // 通常のRuby on Railsにおけるフォーム送信処理はキャンセルする
