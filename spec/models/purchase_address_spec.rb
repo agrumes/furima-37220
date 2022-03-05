@@ -10,24 +10,43 @@ RSpec.describe PurchaseAddress, type: :model do
   describe '商品購入、配送先の保存' do
    context '内容に問題ない場合' do
       it 'すべての値が正しく入力されていれば保存できること' do
+        expect(@purchase_address).to be_valid
       end
       it 'tokenがあれば保存ができること' do
+        @purchase_address.token = 'abc123'
+        expect(@purchase_address).to be_valid
       end
       it 'postal_codeが「3桁ハイフン4桁」の半角数値であれば保存ができること' do
+        @purchase_address.postal_code = '123-4567'
+        expect(@purchase_address).to be_valid
       end
       it 'prefectureを「---」以外で選択していれば保存ができること' do
+        @purchase_address.prefecture_id = '2'
+        expect(@purchase_address).to be_valid
       end
       it 'cityがあれば保存ができること' do
+        @purchase_address.city = '港区'
+        expect(@purchase_address).to be_valid
       end
       it 'blockがあれば保存ができること' do
+        @purchase_address.block = '六本木6-10-1'
+        expect(@purchase_address).to be_valid
       end
       it 'buildingは空でも保存できること' do
+        @purchase_address.building = nil
+        expect(@purchase_address).to be_valid
       end
       it 'phone_numberが10桁または11桁の半角数値かつハイフンがなければ保存ができること' do
+        @purchase_address.phone_number = '09012345678'
+        expect(@purchase_address).to be_valid
       end
       it 'item_idがあれば保存できること' do
+        @purchase_address.item_id = '10'
+        expect(@purchase_address).to be_valid
       end
       it 'user_idがあれば保存できること' do
+        @purchase_address.user_id = '30'
+        expect(@purchase_address).to be_valid
       end
     end
 
