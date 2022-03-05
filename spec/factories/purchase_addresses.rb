@@ -7,6 +7,5 @@ FactoryBot.define do
     block                   { Faker::Address.street_address }
     building                { Faker::Address.street_address }
     phone_number            { Faker::Number.decimal_part(digits: 11) }
-    item_id                 { Faker::Number.non_zero_digit }
   end
 end
