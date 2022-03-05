@@ -52,30 +52,69 @@ RSpec.describe PurchaseAddress, type: :model do
 
     context '内容に問題がある場合' do
       it 'tokenが空だと保存できないこと' do
+        @purchase_address.token = nil
+        @purchase_address.valid?
+        expect(@purchase_address.errors.full_messages).to include("Token can't be blank")
       end
       it 'postal_codeが空だと保存できないこと' do
+        @purchase_address.postal_code = nil
+        @purchase_address.valid?
+        expect(@purchase_address.errors.full_messages).to include("Postal code can't be blank")
       end
       it 'postal_codeが「3桁ハイフン4桁」の半角数値でないと保存できないこと' do
+        @purchase_address.postal_code = '1234567'
+        @purchase_address.valid?
+        expect(@purchase_address.errors.full_messages).to include("Postal code is invalid. Enter it as follows (e.g. 123-4567)")
       end
       it 'prefectureが空だと保存できないこと' do
+        @purchase_address.prefecture_id = nil
+        @purchase_address.valid?
+        expect(@purchase_address.errors.full_messages).to include("Prefecture can't be blank")
       end
       it 'prefectureが「---」だと保存できないこと' do
+        @purchase_address.prefecture_id = '1'
+        @purchase_address.valid?
+        expect(@purchase_address.errors.full_messages).to include("Prefecture can't be blank")
       end
       it 'cityが空だと保存できないこと' do
+        @purchase_address.city = nil
+        @purchase_address.valid?
+        expect(@purchase_address.errors.full_messages).to include("City can't be blank")
       end
       it 'blockが空だと保存できないこと' do
+        @purchase_address.block = nil
+        @purchase_address.valid?
+        expect(@purchase_address.errors.full_messages).to include("Block can't be blank")
       end
       it 'phone_numberが空だと保存できないこと' do
+        @purchase_address.phone_number = nil
+        @purchase_address.valid?
+        expect(@purchase_address.errors.full_messages).to include("Phone number can't be blank")
       end
       it 'phone_numberが10桁または11桁でないと保存できないこと' do
+        @purchase_address.phone_number = '090123456'
+        @purchase_address.valid?
+        expect(@purchase_address.errors.full_messages).to include("Phone number is too short")
       end
       it 'phone_numberが半角数値でないと保存できないこと' do
+        @purchase_address.phone_number = '１２３４５６７８９０'
+        @purchase_address.valid?
+        expect(@purchase_address.errors.full_messages).to include("Phone number is invalid. Input only number")
       end
       it 'phone_numberにハイフンがあると保存できないこと' do
+        @purchase_address.phone_number = '090-1234-5678'
+        @purchase_address.valid?
+        expect(@purchase_address.errors.full_messages).to include("Phone number is invalid. Input only number")
       end
       it 'user_idが紐付いていないと保存できないこと' do
+        @purchase_address.user_id = nil
+        @purchase_address.valid?
+        expect(@purchase_address.errors.full_messages).to include("User can't be blank")
       end
       it 'item_idがないと保存できないこと' do
+        @purchase_address.item_id = nil
+        @purchase_address.valid?
+        expect(@purchase_address.errors.full_messages).to include("Item can't be blank")
       end
     end
   end
