@@ -14,12 +14,13 @@ class PurchaseAddress
   validates :prefecture_id, numericality: { other_than: 1, message: "can't be blank" }
   validates :city
   validates :block
-  validates :phone_number, format: { with: /\A\d{10,11}\z/, message: 'is too short' }
+  validates :phone_number, length: { minimum: 10, message: 'is too short'} 
   # purchaseモデルのバリデーション
   validates :user_id
   validates :item_id
   end
 
+  validates :phone_number, length: { maximum: 11, message: 'is too long'} 
   validates :phone_number, format: { with: /\A[0-9]+\z/, message: 'is invalid. Input only number' }
 
   def save
