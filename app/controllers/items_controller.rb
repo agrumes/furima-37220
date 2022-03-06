@@ -1,7 +1,7 @@
 class ItemsController < ApplicationController
   before_action :move_to_login, only: [:new, :create, :edit, :update, :destroy]
   before_action :set_item, only: [:show, :edit, :update, :destroy]
-  before_action :user_confirmation, only: [:edit, :destroy]
+  before_action :non_purchase, only: [:edit, :destroy]
 
   def index
     @items = Item.all.order(id: "DESC")
@@ -24,6 +24,7 @@ class ItemsController < ApplicationController
   end
 
   def edit
+
   end
 
   def update
@@ -54,7 +55,9 @@ class ItemsController < ApplicationController
     @item = Item.find(params[:id])
   end
 
-  def user_confirmation
-    redirect_to root_path unless @item.user.id ==  current_user.id
+  # 出品者とログインしているユーザーが一緒じゃない場合、またはsold Outの時は編集・削除は不可
+  def non_purchase
+    redirect_to root_path if @item.user.id !=  current_user.id || @item.purchase.present?
   end
+
 end
