@@ -4,7 +4,7 @@ class PurchaseAddress
   #そのクラスのインスタンスはActiveRecordを継承したクラスのインスタンスと同様に、form_with や render などのヘルパーメソッドの引数として扱え、バリデーションの機能を使用できるようになる
   include ActiveModel::Model
   #保存したいカラムを属性値として扱えるようにする
-  attr_accessor :item_id, :user_id, :postal_code, :prefecture_id, :city, :block, :building, :phone_number, :purchase_id, :token
+  attr_accessor :item_id, :user_id, :postal_code, :prefecture_id, :city, :block, :building, :phone_number, :token
 
   # with_optionsは複数のバリデーションをグループ化し、共通の制限をかけるためのメソッド
   with_options presence: true do
